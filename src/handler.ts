@@ -8,11 +8,13 @@ import {
 } from "aws-lambda";
 import {send} from "./client.js";
 
-export async function createLambdaHandler(
+type lambdaHandlerFunction = (event: CloudFormationCustomResourceEvent, context: Context) => Promise<CloudFormationCustomResourceResponse>
+
+export function createLambdaHandler(
     onCreate: (event: CloudFormationCustomResourceCreateEvent, context: Context) => Promise<CloudFormationCustomResourceResponse>,
     onUpdate: (event: CloudFormationCustomResourceUpdateEvent, context: Context) => Promise<CloudFormationCustomResourceResponse>,
     onDelete: (event: CloudFormationCustomResourceDeleteEvent, context: Context) => Promise<CloudFormationCustomResourceResponse>
-) {
+): lambdaHandlerFunction {
     return async (event: CloudFormationCustomResourceEvent, context: Context): Promise<CloudFormationCustomResourceResponse> => {
         try {
             switch (event.RequestType) {
