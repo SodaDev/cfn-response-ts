@@ -1,6 +1,6 @@
 {
   "name": "cfn-response-ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "AWS Custom Resource handler",
   "type": "module",
   "types": "./lib/cjs/types/index.d.ts",
